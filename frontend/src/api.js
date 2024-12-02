@@ -1,8 +1,12 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: process.env.REACT_APP_BACKEND_URL,
+  baseURL: "https://task-backend-mu-eight.vercel.app/",
   withCredentials: true,
+  headers: {
+    "Content-Type": "application/json", // Default content type for requests
+  },
+  timeout: 20000,
 });
 
 export default API;
