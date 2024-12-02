@@ -1,0 +1,11 @@
+.profile-table {
+  margin: 5px;
+  font-weight: light;
+  border: 1px solid;
+  text-align: left;
+  width: 500px;
+}
+.profile-table td {
+  border: 1px solid;
+  padding: 5px;
+}

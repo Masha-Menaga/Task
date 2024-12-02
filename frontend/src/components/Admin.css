@@ -1,0 +1,113 @@
+.admin-container {
+  background-color: rgb(245, 190, 234);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dashboard {
+  width: 1000px;
+  height: 500px;
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 10px;
+  margin: 20px;
+  display: flex;
+  align-items: normal;
+  justify-content: flex-end;
+}
+.admin {
+  padding: 20px;
+  margin: 0px;
+  width: 20%;
+}
+aside {
+  width: 80%;
+  background-color: #e5f1f6;
+  padding: 20px;
+  margin: 0px;
+  border-radius: 10px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: relative;
+}
+.profile {
+  position: absolute;
+
+  right: 10px;
+  top: auto;
+  align-tracks: right;
+  cursor: pointer;
+}
+
+.profile-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin: 10px;
+}
+.profile-icon:hover {
+  position: relative;
+  margin: 10px 20px;
+  transform: scale(1.5);
+}
+.dropdown-menu {
+  position: absolute;
+
+  top: 45px;
+  right: 10px;
+
+  background: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 10px;
+  width: 200px;
+  z-index: 1000;
+}
+
+h1 {
+  margin: 0px;
+
+  text-wrap: wrap;
+}
+h4 {
+  margin: 0px;
+}
+.tab {
+  font-size: 14px;
+  line-height: 25px;
+}
+.tab:hover {
+  cursor: pointer;
+  font-weight: bold;
+}
+img {
+  width: 20px;
+  padding-right: 10px;
+  vertical-align: middle;
+}
+.profile-details {
+  margin-bottom: 10px;
+}
+
+.dropdown-menu p {
+  margin: 10px;
+  font-size: 14px;
+  color: #333;
+}
+.logout-button {
+  width: 100%;
+  padding: 8px;
+  background: #ff4d4f;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.logout-button:hover {
+  background: #d9363e;
+}
