@@ -18,13 +18,12 @@ server.use(bodyParser.json());
 server.use(express.json());
 server.use(cookieParser());
 
-server.use(
-  cors({
-    origin: process.env.REACT_APP_FRONTEND_URL,
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-  })
-);
+const corsOptions = {
+  origin: process.env.REACT_APP_FRONTEND_URL,
+  methods: "GET,POST,PUT,DELETE",
+  credentials: true,
+};
+server.use(cors(corsOptions));
 
 server.get("/", (req, res) => {
   res.status(200).json({
