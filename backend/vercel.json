@@ -1,10 +1,13 @@
 {
-  "version": 2,
-  "builds": [{ "src": "server.js", "use": "@vercel/node" }],
-  "routes": [
+  "headers": [
     {
-      "src": "/(.*)",
-      "dest": "server.js"
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "https://task-frontend-three-virid.vercel.app"
+        }
+      ]
     }
   ]
 }
