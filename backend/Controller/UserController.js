@@ -116,8 +116,11 @@ async function loginUser(req, res) {
 }
 
 async function LogoutUser(req, res, next) {
-  res.cookie("authToken", {
+  res.cookie("authToken", "", {
     httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "none",
+    maxAge: 0,
   });
 
   res.status(200).json({
@@ -150,6 +153,7 @@ async function getProfile(req, res) {
       address,
     });
   } catch (err) {
+    console.error("Error fetching profile:", err);
     return res
       .status(500)
       .json({ message: "Failed to fetch profile", error: err.message });
