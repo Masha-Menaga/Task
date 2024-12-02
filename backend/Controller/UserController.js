@@ -26,18 +26,6 @@ async function signupUser(req, res) {
       password: hassedPassword,
       role,
     });
-    const token = jwt.sign(
-      { userId: user._id, username: newUser.username },
-      process.env.JWT_SECRETKEY,
-      { expiresIn: process.env.JWT_EXPIRETIME }
-    );
-
-    res.cookie("authToken", token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "none",
-      maxAge: 3600000,
-    });
 
     await newUser.save();
     res.status(201).json({ message: "User Registered Successfully", newUser });
@@ -116,11 +104,8 @@ async function loginUser(req, res) {
 }
 
 async function LogoutUser(req, res, next) {
-  res.cookie("authToken", "", {
+  res.cookie("authToken", {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "none",
-    maxAge: 0,
   });
 
   res.status(200).json({
@@ -153,7 +138,6 @@ async function getProfile(req, res) {
       address,
     });
   } catch (err) {
-    console.error("Error fetching profile:", err);
     return res
       .status(500)
       .json({ message: "Failed to fetch profile", error: err.message });
