@@ -86,9 +86,9 @@ async function loginUser(req, res) {
 
     res.cookie("authToken", token, {
       httpOnly: true,
-      maxAge: 3600000,
       secure: process.env.NODE_ENV === "production",
       sameSite: "none",
+      maxAge: 3600000,
     });
 
     res.status(200).json({

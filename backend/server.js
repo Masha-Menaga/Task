@@ -22,7 +22,6 @@ server.use(
     origin: process.env.REACT_APP_FRONTEND_URL,
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
-    
   })
 );
 
@@ -53,6 +52,6 @@ DBConnection();
 
 server.use("/api", UserRouter);
 
-server.listen(process.env.PORT, () => {
-  console.log("Server is Running in", process.env.PORT);
+server.listen(process.env.PORT || 3001, () => {
+  console.log(`Server is Running in port ${process.env.PORT || 3001}`);
 });
