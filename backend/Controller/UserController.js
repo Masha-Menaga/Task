@@ -26,6 +26,18 @@ async function signupUser(req, res) {
       password: hassedPassword,
       role,
     });
+    const token = jwt.sign(
+      { userId: user._id, username: user.username },
+      process.env.JWT_SECRETKEY,
+      { expiresIn: process.env.JWT_EXPIRETIME }
+    );
+
+    res.cookie("authToken", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "none",
+      maxAge: 3600000,
+    });
 
     await newUser.save();
     res.status(201).json({ message: "User Registered Successfully", newUser });
