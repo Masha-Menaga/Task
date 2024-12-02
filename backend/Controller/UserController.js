@@ -27,7 +27,7 @@ async function signupUser(req, res) {
       role,
     });
     const token = jwt.sign(
-      { userId: user._id, username: user.username },
+      { userId: user._id, username: newUser.username },
       process.env.JWT_SECRETKEY,
       { expiresIn: process.env.JWT_EXPIRETIME }
     );
