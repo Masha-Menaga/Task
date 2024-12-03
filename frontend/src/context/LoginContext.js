@@ -116,6 +116,11 @@ export const LoginProvider = ({ children }) => {
       password: "",
       cpassword: "",
       role: "",
+      emailid: "",
+      gender: "",
+      age: "",
+      phone: "",
+      address: "",
     });
     setIsAuth(false);
     setMatch("Logout Successful!");
