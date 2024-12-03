@@ -23,7 +23,7 @@
 .profile-table td {
   border: 1px solid;
   padding: 5px;
-  word-wrap: break-word; /* Ensures long text wraps */
+  /* word-wrap: break-word; Ensures long text wraps */
 }
 
 /* Responsive Styles */
@@ -44,7 +44,7 @@
   }
 
   .profile-table td {
-    padding: 6px; /* Adjust padding for compact design */
+    padding: 4px; /* Adjust padding for compact design */
   }
 }
 
@@ -53,6 +53,7 @@
   .profile-table {
     display: block;
     overflow: hidden;
+    border: 1px solid;
     /* border: none; Remove borders for better appearance */
   }
 
@@ -63,15 +64,15 @@
 
   .profile-table td {
     display: block;
-    border: none;
+    border: 1px solid;
     padding: 10px 5px;
     text-align: left;
   }
 
   .profile-table td::before {
-    content: attr(
+    /* content: attr(
       data-label
-    ); /* Use `data-label` for headings in stacked view */
+    ); Use `data-label` for headings in stacked view */
     font-weight: bold;
     display: block;
     margin-bottom: 3px;

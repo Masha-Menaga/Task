@@ -116,7 +116,7 @@ img {
 @media (max-width: 768px) {
   .admin-container {
     background-color: rgb(245, 190, 234);
-    height: 100vh;
+    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -139,6 +139,7 @@ img {
 
   aside {
     width: 90%;
+    height: auto;
     margin-top: 20px;
     padding: 10px;
     flex-direction: column;

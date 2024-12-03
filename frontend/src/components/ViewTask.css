@@ -134,7 +134,7 @@ h4 {
 
 /* Modal Responsiveness */
 .modal-content {
-  width: 90%; /* Make modal adapt to smaller screens */
+  width: 85%; /* Make modal adapt to smaller screens */
   max-width: 400px;
 }
 
@@ -188,7 +188,7 @@ h4 {
   .modal-content input,
   .modal-content textarea,
   .modal-content select {
-    font-size: 14px; /* Adjust font for mobile inputs */
+    font-size: 12px; /* Adjust font for mobile inputs */
     padding: 8px;
   }
 }
@@ -197,7 +197,7 @@ h4 {
 button,
 .taskButton {
   padding: 10px 15px;
-  font-size: 14px;
+  font-size: 10px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;

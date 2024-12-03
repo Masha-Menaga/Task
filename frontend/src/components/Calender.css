@@ -43,7 +43,7 @@
 /* Responsive Styles */
 @media (max-width: 768px) {
   .calendar-container {
-    max-width: 90%;
+    max-width: 70%;
     margin: 20px auto;
     padding: 15px;
   }
@@ -60,19 +60,22 @@
 }
 
 @media (max-width: 480px) {
+  h1 {
+    font-size: 16px;
+  }
   .calendar-container {
     margin: 10px auto;
     padding: 10px;
   }
 
   .react-calendar {
-    width: 100%;
-    font-size: 12px;
+    width: 90%;
+    font-size: 10px;
   }
 
   .react-calendar__tile {
     height: 20px;
-    font-size: 12px;
+    font-size: 10px;
   }
 
   .react-calendar__tile--active {
