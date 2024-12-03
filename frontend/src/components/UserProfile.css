@@ -15,9 +15,9 @@
   font-weight: light;
   border: 1px solid;
   text-align: left;
-  width: 100%; /* Full width for responsiveness */
+  /* width: 100%; Full width for responsiveness */
   max-width: 500px;
-  border-collapse: collapse; /* Cleaner table layout */
+  /* border-collapse: collapse; Cleaner table layout */
 }
 
 .profile-table td {
@@ -29,6 +29,7 @@
 /* Responsive Styles */
 @media (max-width: 768px) {
   .profile-table {
+    width: 100%;
     font-size: 14px; /* Adjust font size for smaller screens */
   }
 
@@ -52,7 +53,7 @@
   .profile-table {
     display: block;
     overflow: hidden;
-    border: none; /* Remove borders for better appearance */
+    /* border: none; Remove borders for better appearance */
   }
 
   .profile-table tr {
@@ -73,6 +74,6 @@
     ); /* Use `data-label` for headings in stacked view */
     font-weight: bold;
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 3px;
   }
 }

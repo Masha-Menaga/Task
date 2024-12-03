@@ -114,6 +114,14 @@ img {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
+  .admin-container {
+    background-color: rgb(245, 190, 234);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
   .dashboard {
     width: 90%;
     flex-direction: column;
@@ -124,13 +132,13 @@ img {
   }
 
   .admin {
-    width: 100%;
+    width: 90%;
     padding: 10px;
     text-align: center;
   }
 
   aside {
-    width: 100%;
+    width: 90%;
     margin-top: 20px;
     padding: 10px;
     flex-direction: column;
@@ -173,17 +181,18 @@ img {
   }
 
   .profile-icon {
-    width: 35px;
-    height: 35px;
+    width: 25px;
+    height: 25px;
   }
 
   .logout-button {
     font-size: 12px;
     padding: 6px;
+    width: 80%;
   }
 
   .dropdown-menu {
-    width: 100%;
+    width: 70%;
     padding: 5px;
     font-size: 12px;
   }
