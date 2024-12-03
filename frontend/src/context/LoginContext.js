@@ -23,8 +23,8 @@ export const LoginProvider = ({ children }) => {
   const navigate = useNavigate();
 
   async function signup() {
-    const { username, password, cpassword, role } = user;
-    if (!username || !password || !cpassword || !role) {
+    const { username, password, cpassword, role, emailid } = user;
+    if (!username || !password || !cpassword || !role || !emailid) {
       setMatch("Please Fill the details");
       return;
     }
@@ -38,6 +38,7 @@ export const LoginProvider = ({ children }) => {
         username,
         password,
         role,
+        emailid,
       });
       console.log("Signup successful:", response.data);
 

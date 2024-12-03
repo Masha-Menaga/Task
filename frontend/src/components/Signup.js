@@ -27,6 +27,14 @@ const Signup = () => {
         value={user.username || ""}
         onChange={handleChange}
       />
+      <p>Email Id :</p>
+      <input
+        type="email"
+        name="emailid"
+        placeholder="Enter EmailId"
+        value={user.emailid || ""}
+        onChange={handleChange}
+      />
       <p>Role :</p>
       <select name="role" value={user.role || ""} onChange={handleChange}>
         <option value="">Select</option>

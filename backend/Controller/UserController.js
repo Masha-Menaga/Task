@@ -6,9 +6,9 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 async function signupUser(req, res) {
-  const { username, password, role } = req.body;
+  const { username, password, role, emailid } = req.body;
   console.log("Request received at /signup:", req.body);
-  if (!username || !password || !role) {
+  if (!username || !password || !role || !emailid) {
     return res.status(400).json({ message: "All fields are required" });
   }
 
@@ -24,6 +24,7 @@ async function signupUser(req, res) {
       username,
       password: hassedPassword,
       role,
+      emailid,
     });
 
     await newUser.save();
