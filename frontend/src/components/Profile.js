@@ -5,7 +5,6 @@ const Profile = ({ navigate }) => {
   const { close, submit } = useContext(LoginContext);
   const [profileData, setProfileData] = useState({
     username: "",
-    emailid: "",
     gender: "",
     age: "",
     phone: "",
@@ -35,14 +34,6 @@ const Profile = ({ navigate }) => {
           value={profileData.username}
           onChange={handleChange}
           placeholder="Enter your UserName"
-        ></input>
-        <p>Email ID :</p>
-        <input
-          type="text"
-          name="emailid"
-          value={profileData.emailid}
-          onChange={handleChange}
-          placeholder="Enter your Email ID"
         ></input>
         <p>Gender :</p>
         <input

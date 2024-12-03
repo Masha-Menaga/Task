@@ -39,9 +39,9 @@ async function signupUser(req, res) {
 async function profile(req, res) {
   console.log("Request received at /profile:", req.body);
 
-  const { username, emailid, gender, age, phone, address } = req.body;
+  const { username, gender, age, phone, address } = req.body;
 
-  if (!username || !emailid || !phone || !gender || !age || !address) {
+  if (!username || !phone || !gender || !age || !address) {
     return res.status(400).json({ message: "All fields are required" });
   }
   try {
@@ -49,7 +49,6 @@ async function profile(req, res) {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    user.emailid = emailid;
     user.gender = gender;
     user.age = age;
     user.phone = phone;
