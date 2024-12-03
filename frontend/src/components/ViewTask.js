@@ -130,7 +130,9 @@ const ViewTask = () => {
     <>
       <div className="task-container">
         <h4>Task Details</h4>
-        <button onClick={() => setShowModal(true)}>Add Task</button>
+        <button onClick={() => setShowModal(true)} className="viewTask">
+          Add Task
+        </button>
       </div>
 
       <table className="task-table">
@@ -150,12 +152,12 @@ const ViewTask = () => {
                 <td>{task.description}</td>
                 <td>{task.status}</td>
                 <td>
-                  <button onClick={() => editTask(task)} className="taskButton">
+                  <button onClick={() => editTask(task)} className="viewTask">
                     Edit
                   </button>{" "}
                   <button
                     onClick={() => deleteTask(task._id)}
-                    className="taskButton"
+                    className="viewTask"
                   >
                     Delete
                   </button>
@@ -204,7 +206,7 @@ const ViewTask = () => {
             </select>
             <button
               onClick={newTask._id ? updateTask : saveTask}
-              className="taskButton"
+              className="viewTask"
             >
               {newTask._id ? "Update" : "Save"}
             </button>
@@ -218,7 +220,7 @@ const ViewTask = () => {
                   status: "Pending",
                 });
               }}
-              className="taskButton"
+              className="viewTask"
             >
               Cancel
             </button>
