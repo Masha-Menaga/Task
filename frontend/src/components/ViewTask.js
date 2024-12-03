@@ -92,7 +92,7 @@ const ViewTask = () => {
 
   const updateTask = async () => {
     if (!newTask.title || !newTask.userId) {
-      alert("Task title and User ID are required!");
+      alert("Task details are required!");
       return;
     }
 

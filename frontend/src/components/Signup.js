@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import LoginContext from "../context/LoginContext";
+import "./Login.css";
 
 const Signup = () => {
   const { user, setUser, match, signup, close } = useContext(LoginContext);
@@ -62,7 +63,9 @@ const Signup = () => {
 
       <p className="password">{match}</p>
 
-      <button onClick={signup} className="login-button">Signup</button>
+      <button onClick={signup} className="login-button">
+        Signup
+      </button>
       <p>
         Already have an account? <Link to="/">Login</Link>
       </p>
