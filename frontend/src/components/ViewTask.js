@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import "./ViewTask.css";
 import API from "../api";
 
 const ViewTask = () => {
-  const loggedInUser = useMemo(() => {
-    return JSON.parse(localStorage.getItem("loggedInUser")) || {};
-  }, []);
+  const [loggedInUser, setLoggedInUser] = useState(
+    JSON.parse(localStorage.getItem("loggedInUser")) || {}
+  );
   console.log("enter task");
   const [tasks, setTasks] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -17,6 +17,23 @@ const ViewTask = () => {
     status: "Pending",
   });
   console.log(newTask);
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const updatedUser =
+        JSON.parse(localStorage.getItem("loggedInUser")) || {};
+      setLoggedInUser(updatedUser);
+      setNewTask((prevTask) => ({
+        ...prevTask,
+        userId: updatedUser._id || "",
+      }));
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
 
   useEffect(() => {
     const fetchTasks = async () => {
