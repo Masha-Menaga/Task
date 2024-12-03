@@ -62,7 +62,7 @@ const Signup = () => {
 
       <p className="password">{match}</p>
 
-      <button onClick={signup}>Signup</button>
+      <button onClick={signup} className="login-button">Signup</button>
       <p>
         Already have an account? <Link to="/">Login</Link>
       </p>

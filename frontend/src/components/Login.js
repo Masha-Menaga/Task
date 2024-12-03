@@ -40,7 +40,9 @@ const Login = () => {
 
       <p className="password">{match}</p>
 
-      <button onClick={login}>Login</button>
+      <button onClick={login} className="login-button">
+        Login
+      </button>
       <p>
         Not a Member <Link to="/signup">SignUp</Link> Now
       </p>
