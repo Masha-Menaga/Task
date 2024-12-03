@@ -58,3 +58,32 @@ p {
   margin: 0px 40px;
   margin-top: 0px;
 }
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+  .container {
+    width: 80%;
+    padding: 15px;
+    margin: 10% auto;
+  }
+
+  input,
+  select {
+    width: 70%;
+    font-size: 14px;
+  }
+
+  button {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+
+  .password {
+    margin: 0px 10px;
+    text-align: left;
+  }
+
+  p {
+    font-size: 14px;
+  }
+}

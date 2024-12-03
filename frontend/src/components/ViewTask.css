@@ -106,3 +106,104 @@ h4 {
 .button-container button {
   margin: 0px;
 }
+
+/* Responsive style */
+/* General Adjustments for Flex Containers */
+.task-container,
+.button-container {
+  flex-wrap: wrap; /* Wrap content for smaller screens */
+}
+
+/* Responsive Table Adjustments */
+.task-table,
+.viewuser-table {
+  border-collapse: collapse; /* Clean layout */
+  width: 100%; /* Full width for smaller devices */
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.task-table th,
+.viewuser-table th,
+.task-table td,
+.viewuser-table td {
+  padding: 10px; /* Adjust padding for readability */
+  font-size: 14px; /* Responsive font size */
+}
+
+/* Modal Responsiveness */
+.modal-content {
+  width: 90%; /* Make modal adapt to smaller screens */
+  max-width: 400px;
+}
+
+/* Buttons in Modal */
+.modal-content button {
+  width: 100%; /* Buttons take full width on small screens */
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+  h4 {
+    font-size: 16px; /* Smaller font for headers */
+  }
+
+  .task-table th,
+  .viewuser-table th,
+  .task-table td,
+  .viewuser-table td {
+    font-size: 12px; /* Compact text for smaller screens */
+    padding: 8px;
+  }
+
+  .taskButton {
+    margin: 3px;
+  }
+}
+
+/* Stacked Layout for Very Small Screens */
+@media (max-width: 480px) {
+  .task-container {
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align items to the start */
+  }
+
+  .button-container {
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 5px; /* Add spacing */
+  }
+
+  .task-table th,
+  .viewuser-table th,
+  .task-table td,
+  .viewuser-table td {
+    padding: 5px; /* Compact padding for mobile */
+    font-size: 10px; /* Reduce font size for better fit */
+  }
+
+  .modal-content input,
+  .modal-content textarea,
+  .modal-content select {
+    font-size: 14px; /* Adjust font for mobile inputs */
+    padding: 8px;
+  }
+}
+
+/* Touch-Friendly Buttons */
+button,
+.taskButton {
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover,
+.taskButton:hover {
+  background-color: #ddd; /* Subtle hover effect */
+}

@@ -111,3 +111,80 @@ img {
 .logout-button:hover {
   background: #d9363e;
 }
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .dashboard {
+    width: 90%;
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .admin {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+  }
+
+  aside {
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    flex-direction: column;
+  }
+
+  .profile {
+    position: relative;
+    right: 0;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .profile-icon {
+    margin: 5px auto;
+    width: 40px;
+    height: 40px;
+  }
+
+  .dropdown-menu {
+    width: 90%;
+    left: 5%;
+    right: auto;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard {
+    margin: 10px;
+    padding: 5px;
+  }
+
+  .admin {
+    padding: 5px;
+    font-size: 14px;
+  }
+
+  aside {
+    padding: 5px;
+  }
+
+  .profile-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .logout-button {
+    font-size: 12px;
+    padding: 6px;
+  }
+
+  .dropdown-menu {
+    width: 100%;
+    padding: 5px;
+    font-size: 12px;
+  }
+}

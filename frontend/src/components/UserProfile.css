@@ -1,4 +1,4 @@
-.profile-table {
+/* .profile-table {
   margin: 5px;
   font-weight: light;
   border: 1px solid;
@@ -8,4 +8,71 @@
 .profile-table td {
   border: 1px solid;
   padding: 5px;
+} */
+
+.profile-table {
+  margin: 5px auto;
+  font-weight: light;
+  border: 1px solid;
+  text-align: left;
+  width: 100%; /* Full width for responsiveness */
+  max-width: 500px;
+  border-collapse: collapse; /* Cleaner table layout */
+}
+
+.profile-table td {
+  border: 1px solid;
+  padding: 5px;
+  word-wrap: break-word; /* Ensures long text wraps */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .profile-table {
+    font-size: 14px; /* Adjust font size for smaller screens */
+  }
+
+  .profile-table td {
+    padding: 8px; /* Slightly increase padding for touch devices */
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-table {
+    font-size: 12px; /* Further reduce font size for smaller screens */
+  }
+
+  .profile-table td {
+    padding: 6px; /* Adjust padding for compact design */
+  }
+}
+
+/* Mobile-friendly Table (Stacked Layout) */
+@media (max-width: 480px) {
+  .profile-table {
+    display: block;
+    overflow: hidden;
+    border: none; /* Remove borders for better appearance */
+  }
+
+  .profile-table tr {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .profile-table td {
+    display: block;
+    border: none;
+    padding: 10px 5px;
+    text-align: left;
+  }
+
+  .profile-table td::before {
+    content: attr(
+      data-label
+    ); /* Use `data-label` for headings in stacked view */
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
 }

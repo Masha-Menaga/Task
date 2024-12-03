@@ -39,3 +39,47 @@
   color: white !important;
   border-radius: 25%;
 }
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .calendar-container {
+    max-width: 90%;
+    margin: 20px auto;
+    padding: 15px;
+  }
+
+  .react-calendar {
+    max-height: none;
+    width: 100%;
+  }
+
+  .react-calendar__tile {
+    height: 25px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .calendar-container {
+    margin: 10px auto;
+    padding: 10px;
+  }
+
+  .react-calendar {
+    width: 100%;
+    font-size: 12px;
+  }
+
+  .react-calendar__tile {
+    height: 20px;
+    font-size: 12px;
+  }
+
+  .react-calendar__tile--active {
+    background: #ff7f50;
+  }
+
+  .today {
+    background: #32cd32 !important;
+  }
+}
