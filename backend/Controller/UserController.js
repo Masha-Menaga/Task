@@ -104,8 +104,10 @@ async function loginUser(req, res) {
 }
 
 async function LogoutUser(req, res, next) {
-  res.cookie("authToken", {
+  res.clearCookie("authToken", {
     httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "none",
   });
 
   res.status(200).json({

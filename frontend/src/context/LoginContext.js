@@ -108,8 +108,9 @@ export const LoginProvider = ({ children }) => {
   }
 
   async function logout() {
-    await API.post("/api/logout");
+    await API.post("/api/logout", {}, { withCredentials: true });
     console.log("Logout successful");
+
     setUser({
       username: "",
       password: "",
