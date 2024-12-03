@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import LoginContext from "../context/LoginContext";
 
 const Profile = ({ navigate }) => {
-  const { close, submit } = useContext(LoginContext);
+  const { close, submit, match } = useContext(LoginContext);
   const [profileData, setProfileData] = useState({
     username: "",
     gender: "",
@@ -70,6 +70,7 @@ const Profile = ({ navigate }) => {
           onChange={handleChange}
           placeholder="Enter your detailed address"
         />
+        <p className="password">{match}</p>
         <button onClick={handleSubmit}>submit</button>
       </div>
     </>

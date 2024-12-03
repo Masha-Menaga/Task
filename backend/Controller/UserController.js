@@ -8,6 +8,9 @@ const jwt = require("jsonwebtoken");
 async function signupUser(req, res) {
   const { username, password, role, emailid } = req.body;
   console.log("Request received at /signup:", req.body);
+  if (!["admin", "user"].includes(role)) {
+    return res.status(400).json({ message: "Invalid role specified" });
+  }
   if (!username || !password || !role || !emailid) {
     return res.status(400).json({ message: "All fields are required" });
   }

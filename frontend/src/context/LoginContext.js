@@ -62,17 +62,28 @@ export const LoginProvider = ({ children }) => {
   }
 
   async function submit(profileData) {
-    const response = await API.post("/api/profile", profileData);
-
     const role = localStorage.getItem("role");
-    console.log("Profile updated:", response.data);
+    const { username, gender, age, phone, address } = user;
+    if (role !== "admin" && role !== "user") {
+      setMatch("Unauthorized action!");
+      return;
+    }
+    if (!username || !gender || !age || !phone || !address) {
+      setMatch("Please Fill the details");
+      return;
+    }
+    try {
+      const response = await API.post("/api/profile", profileData);
+      console.log("Profile updated:", response.data);
 
-    localStorage.setItem("profileData", JSON.stringify(profileData));
-
-    if (role === "admin") {
-      navigate("/admin");
-    } else {
-      navigate("/user");
+      if (role === "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/user");
+      }
+    } catch (err) {
+      console.error("Profile update failed:", err);
+      setMatch("Failed to update profile!");
     }
   }
 
