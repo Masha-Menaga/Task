@@ -171,7 +171,9 @@ h4 {
     flex-direction: column; /* Stack items vertically */
     align-items: flex-start; /* Align items to the start */
   }
-
+  h3 {
+    font-size: 14px;
+  }
   .button-container {
     flex-direction: column; /* Stack buttons vertically */
     gap: 5px; /* Add spacing */
@@ -196,7 +198,7 @@ h4 {
 /* Touch-Friendly Buttons */
 button,
 .taskButton {
-  padding: 10px 15px;
+  padding: 5px 10px;
   font-size: 10px;
   border-radius: 5px;
   cursor: pointer;
