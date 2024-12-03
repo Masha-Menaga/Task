@@ -72,7 +72,7 @@ export const LoginProvider = ({ children }) => {
       const response = await API.post("/api/profile", profileData);
       console.log("Profile updated:", response.data);
       setMatch("Profile Updated");
-      navigate("/login");
+      navigate("/");
     } catch (err) {
       console.error("Profile update failed:", err);
       setMatch("Failed to update profile!");
