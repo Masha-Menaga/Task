@@ -74,10 +74,16 @@ const ViewUser = () => {
                     <td>{user.role}</td>
                     <td>
                       <div className="button-container">
-                        <button onClick={() => handleViewTasks(user._id)}>
+                        <button
+                          onClick={() => handleViewTasks(user._id)}
+                          className="viewTask"
+                        >
                           View Tasks
                         </button>
-                        <button onClick={() => handleDeleteUser(user._id)}>
+                        <button
+                          onClick={() => handleDeleteUser(user._id)}
+                          className="viewTask"
+                        >
                           Delete
                         </button>
                       </div>

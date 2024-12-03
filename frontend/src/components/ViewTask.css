@@ -106,6 +106,14 @@ h4 {
 .button-container button {
   margin: 0px;
 }
+.viewTask {
+  padding: 5px 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: rgb(5, 127, 168);
+  color: #fff;
+}
 
 /* Responsive style */
 /* General Adjustments for Flex Containers */
@@ -203,6 +211,14 @@ button,
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
+}
+.viewTask {
+  padding: 5px 10px;
+  font-size: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: rgb(5, 127, 168);
+  color: #fff;
 }
 
 button:hover,

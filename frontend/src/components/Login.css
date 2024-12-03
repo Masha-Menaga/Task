@@ -90,3 +90,30 @@ p {
     font-size: 14px;
   }
 }
+@media (max-width: 480px) {
+  .container {
+    width: 60%;
+    padding: 10px;
+    margin: 10% auto;
+  }
+
+  input,
+  select {
+    width: 70%;
+    font-size: 14px;
+  }
+
+  .login-button {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+
+  .password {
+    margin: 0px 10px;
+    text-align: right;
+  }
+
+  p {
+    font-size: 14px;
+  }
+}

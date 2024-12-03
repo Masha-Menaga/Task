@@ -202,7 +202,10 @@ const ViewTask = () => {
               <option value="In Progress">In Progress</option>
               <option value="Completed">Completed</option>
             </select>
-            <button onClick={newTask._id ? updateTask : saveTask}>
+            <button
+              onClick={newTask._id ? updateTask : saveTask}
+              className="taskButton"
+            >
               {newTask._id ? "Update" : "Save"}
             </button>
             <button
@@ -215,6 +218,7 @@ const ViewTask = () => {
                   status: "Pending",
                 });
               }}
+              className="taskButton"
             >
               Cancel
             </button>

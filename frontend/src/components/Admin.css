@@ -172,13 +172,21 @@ img {
     padding: 5px;
   }
 
+  .tab {
+    font-size: 12px;
+    line-height: 22px;
+  }
+  .tab:hover {
+    cursor: pointer;
+    font-weight: bold;
+  }
   .admin {
     padding: 5px;
     font-size: 14px;
   }
 
   aside {
-    padding: 5px;
+    padding: 10px;
   }
 
   .profile-icon {
@@ -190,10 +198,11 @@ img {
     font-size: 12px;
     padding: 6px;
     width: 80%;
+    margin: 5px auto;
   }
 
   .dropdown-menu {
-    width: 70%;
+    width: 60%;
     padding: 5px;
     font-size: 12px;
   }
