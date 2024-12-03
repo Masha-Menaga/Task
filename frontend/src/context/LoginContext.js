@@ -62,12 +62,8 @@ export const LoginProvider = ({ children }) => {
   }
 
   async function submit(profileData) {
-    const role = localStorage.getItem("role");
-    const { username, gender, age, phone, address } = user;
-    if (role !== "admin" && role !== "user") {
-      setMatch("Unauthorized action!");
-      return;
-    }
+    const { username, gender, age, phone, address } = profileData;
+
     if (!username || !gender || !age || !phone || !address) {
       setMatch("Please Fill the details");
       return;
@@ -75,7 +71,7 @@ export const LoginProvider = ({ children }) => {
     try {
       const response = await API.post("/api/profile", profileData);
       console.log("Profile updated:", response.data);
-
+      const role = localStorage.getItem("role");
       if (role === "admin") {
         navigate("/admin");
       } else {

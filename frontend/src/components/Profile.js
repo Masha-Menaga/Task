@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import LoginContext from "../context/LoginContext";
+import "./Login.css";
 
 const Profile = ({ navigate }) => {
   const { close, submit, match } = useContext(LoginContext);
@@ -71,7 +72,9 @@ const Profile = ({ navigate }) => {
           placeholder="Enter your detailed address"
         />
         <p className="password">{match}</p>
-        <button onClick={handleSubmit}>submit</button>
+        <button onClick={handleSubmit} className="login-button">
+          submit
+        </button>
       </div>
     </>
   );
