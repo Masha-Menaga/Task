@@ -71,12 +71,8 @@ export const LoginProvider = ({ children }) => {
     try {
       const response = await API.post("/api/profile", profileData);
       console.log("Profile updated:", response.data);
-      const role = localStorage.getItem("role");
-      if (role === "admin") {
-        navigate("/admin");
-      } else {
-        navigate("/user");
-      }
+      setMatch("Profile Updated");
+      navigate("/login");
     } catch (err) {
       console.error("Profile update failed:", err);
       setMatch("Failed to update profile!");
