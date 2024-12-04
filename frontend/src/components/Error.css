@@ -1,6 +1,4 @@
-dialog {
-  text-align: center;
-  padding: 30px 50px;
-  margin: 10% auto;
-  border-radius: 5px;
+.dialog {
+  text-align: "center";
+  margin-top: "50px";
 }

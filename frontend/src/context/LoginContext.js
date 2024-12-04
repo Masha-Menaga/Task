@@ -5,20 +5,17 @@ import API from "../api";
 const LoginContext = createContext({});
 
 export const LoginProvider = ({ children }) => {
-  // const [uname, setUname] = useState("");
-  // const [pass, setPass] = useState(" ");
-  // const [name, setName] = useState("");
-  // const [password, setPassword] = useState(" ");
-  // const [cpass, setCpass] = useState(" ");
+ 
   const [user, setUser] = useState({
     username: "",
     password: "",
     cpassword: "",
     role: "",
+    emailid: "",
   });
   const [match, setMatch] = useState("");
   const [isAuth, setIsAuth] = useState(false);
-  // const [role, setRole] = useState("");
+  
 
   const navigate = useNavigate();
 
@@ -28,7 +25,7 @@ export const LoginProvider = ({ children }) => {
       setMatch("Please Fill the details");
       return;
     }
-    if (!username || username.trim().length < 3) {
+    if (username.trim().length < 3) {
       setMatch("Username must be at least 3 characters long.");
       return;
     }
@@ -61,7 +58,7 @@ export const LoginProvider = ({ children }) => {
       // }
     } catch (err) {
       console.log(err.message);
-      setMatch("Signup Failed!");
+      setMatch("Signup Failed! PLease try again.");
     }
   }
 
@@ -72,37 +69,37 @@ export const LoginProvider = ({ children }) => {
       setMatch("Please Fill the details");
       return;
     }
-    if (!username || username.trim().length < 3) {
+    if (username.trim().length < 3) {
       setMatch("Username must be at least 3 characters long.");
       return;
     }
     const validGenders = ["Male", "Female", "Other"];
-    if (!gender || !validGenders.includes(gender)) {
+    if (!validGenders.includes(gender)) {
       setMatch("Please select a valid gender.");
       return;
     }
 
-    if (!age || isNaN(age) || age < 18) {
+    if (isNaN(age) || age < 18) {
       setMatch("Age must be a valid number above 18.");
       return;
     }
     const phoneRegex = /^[0-9]{10}$/;
-    if (!phone || !phoneRegex.test(phone)) {
+    if (!phoneRegex.test(phone)) {
       setMatch("Phone number must be a 10-digit numeric value.");
       return;
     }
-    if (!address || address.trim().length < 5) {
+    if (address.trim().length < 5) {
       setMatch("Address must be at least 5 characters long.");
       return;
     }
     try {
       const response = await API.post("/api/profile", profileData);
       console.log("Profile updated:", response.data);
-      setMatch("Profile Updated! click Login...");
+      setMatch("Profile Updated!  Redirecting to login...");
       navigate("/");
     } catch (err) {
-      console.error("Profile update failed:", err);
-      setMatch("Failed to update profile!");
+      console.error("Profile update failed:", err.message);
+      setMatch("Failed to update profile. Please try again.");
     }
   }
 
@@ -133,31 +130,37 @@ export const LoginProvider = ({ children }) => {
 
       role === "admin" ? navigate("/admin") : navigate("/user");
     } catch (err) {
-      console.error(err);
+      console.error("Login error:", err.message);
       setMatch("Invalid Credentials!");
     }
   }
 
   async function logout() {
-    await API.post("/api/logout", {}, { withCredentials: true });
-    console.log("Logout successful");
+    try {
+      await API.post("/api/logout", {}, { withCredentials: true });
+      localStorage.clear();
+      alert("You have logged out successfully.");
+      console.log("Logout successful");
 
-    setUser({
-      username: "",
-      password: "",
-      cpassword: "",
-      role: "",
-      emailid: "",
-      gender: "",
-      age: "",
-      phone: "",
-      address: "",
-    });
-    setIsAuth(false);
-    setMatch("Logout Successful!");
-    navigate("/");
+      setUser({
+        username: "",
+        password: "",
+        cpassword: "",
+        role: "",
+        emailid: "",
+        gender: "",
+        age: "",
+        phone: "",
+        address: "",
+      });
+      setIsAuth(false);
+      setMatch("");
+      navigate("/");
+    } catch (err) {
+      console.error("Logout error:", err);
+      alert("Failed to log out. Please try again.");
+    }
   }
-
   function close() {
     navigate("*");
   }

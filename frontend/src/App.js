@@ -18,7 +18,14 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/viewtask" element={<ViewTask />} />
+          <Route
+            path="/viewtask"
+            element={
+              <ProductiveRoute>
+                <ViewTask />
+              </ProductiveRoute>
+            }
+          />
 
           <Route
             path="/profile"
