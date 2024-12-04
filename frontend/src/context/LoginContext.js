@@ -28,6 +28,10 @@ export const LoginProvider = ({ children }) => {
       setMatch("Please Fill the details");
       return;
     }
+    if (!username || username.trim().length < 3) {
+      setMatch("Username must be at least 3 characters long.");
+      return;
+    }
     if (password !== cpassword) {
       setMatch("Password Mismatch!");
       return;
@@ -68,10 +72,33 @@ export const LoginProvider = ({ children }) => {
       setMatch("Please Fill the details");
       return;
     }
+    if (!username || username.trim().length < 3) {
+      setMatch("Username must be at least 3 characters long.");
+      return;
+    }
+    const validGenders = ["Male", "Female", "Other"];
+    if (!gender || !validGenders.includes(gender)) {
+      setMatch("Please select a valid gender.");
+      return;
+    }
+
+    if (!age || isNaN(age) || age < 18) {
+      setMatch("Age must be a valid number above 18.");
+      return;
+    }
+    const phoneRegex = /^[0-9]{10}$/;
+    if (!phone || !phoneRegex.test(phone)) {
+      setMatch("Phone number must be a 10-digit numeric value.");
+      return;
+    }
+    if (!address || address.trim().length < 5) {
+      setMatch("Address must be at least 5 characters long.");
+      return;
+    }
     try {
       const response = await API.post("/api/profile", profileData);
       console.log("Profile updated:", response.data);
-      setMatch("Profile Updated");
+      setMatch("Profile Updated! click Login...");
       navigate("/");
     } catch (err) {
       console.error("Profile update failed:", err);
