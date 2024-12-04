@@ -5,7 +5,6 @@ import API from "../api";
 const LoginContext = createContext({});
 
 export const LoginProvider = ({ children }) => {
- 
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -15,7 +14,6 @@ export const LoginProvider = ({ children }) => {
   });
   const [match, setMatch] = useState("");
   const [isAuth, setIsAuth] = useState(false);
-  
 
   const navigate = useNavigate();
 
@@ -70,7 +68,7 @@ export const LoginProvider = ({ children }) => {
       return;
     }
     if (username.trim().length < 3) {
-      setMatch("Username must be at least 3 characters long.");
+      setMatch("Username at least 3 characters.");
       return;
     }
     const validGenders = ["Male", "Female", "Other"];
@@ -80,30 +78,31 @@ export const LoginProvider = ({ children }) => {
     }
 
     if (isNaN(age) || age < 18) {
-      setMatch("Age must be a valid number above 18.");
+      setMatch("Age must above 18.");
       return;
     }
     const phoneRegex = /^[0-9]{10}$/;
     if (!phoneRegex.test(phone)) {
-      setMatch("Phone number must be a 10-digit numeric value.");
+      setMatch("Phone number must numeric value.");
       return;
     }
     if (address.trim().length < 5) {
-      setMatch("Address must be at least 5 characters long.");
+      setMatch("Address min 5 characters.");
       return;
     }
     try {
       const response = await API.post("/api/profile", profileData);
       console.log("Profile updated:", response.data);
-      setMatch("Profile Updated!  Redirecting to login...");
+      alert("Profile Updated!  Redirecting to login...");
       navigate("/");
     } catch (err) {
       console.error("Profile update failed:", err.message);
-      setMatch("Failed to update profile. Please try again.");
+      alert("Failed to update profile. Please try again.");
     }
   }
 
   async function login() {
+    setMatch("");
     const { username, password } = user;
     if (!username || !password) {
       setMatch("Please Fill the details");

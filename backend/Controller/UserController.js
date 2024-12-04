@@ -1,7 +1,4 @@
 const User = require("../Models/User");
-const express = require("express");
-const server = express();
-const bodyParser = require("body-parser");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
@@ -21,29 +18,30 @@ async function signupUser(req, res) {
       return res.status(400).json({ message: "Username already exists" });
     }
 
-    const hassedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = await User.create({
       username,
-      password: hassedPassword,
+      password: hashedPassword,
       role,
       emailid,
     });
     const token = jwt.sign(
       { userId: newUser._id, username: newUser.username },
-      process.env.JWT_SECRETKEY,
-      { expiresIn: process.env.JWT_EXPIRETIME }
+      process.env.JWT_SECRETKEY || "defaultsecret",
+      { expiresIn: process.env.JWT_EXPIRETIME || "1h" }
     );
 
     res.cookie("authToken", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: "none",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
       maxAge: 3600000,
     });
-    await newUser.save();
+
     res.status(201).json({ message: "User Registered Successfully", newUser });
   } catch (err) {
+    console.error("Signup error:", err);
     res
       .status(500)
       .json({ message: "Failed to register user", error: err.message });
@@ -81,6 +79,11 @@ async function loginUser(req, res) {
   const { username, password } = req.body;
   console.log("Request body:", req.body);
 
+  if (!username || !password) {
+    return res
+      .status(400)
+      .json({ message: "Username and password are required" });
+  }
   try {
     const user = await User.findOne({ username });
     if (!user) {
@@ -93,14 +96,14 @@ async function loginUser(req, res) {
 
     const token = jwt.sign(
       { userId: user._id, username: user.username },
-      process.env.JWT_SECRETKEY,
-      { expiresIn: process.env.JWT_EXPIRETIME }
+      process.env.JWT_SECRETKEY || "defaultsecret",
+      { expiresIn: process.env.JWT_EXPIRETIME || "1h" }
     );
 
     res.cookie("authToken", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: "none",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
       maxAge: 3600000,
     });
 
@@ -114,18 +117,6 @@ async function loginUser(req, res) {
   } catch (err) {
     res.status(500).json({ message: "Failed to login", error: err.message });
   }
-}
-
-async function LogoutUser(req, res, next) {
-  res.clearCookie("authToken", {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "none",
-  });
-
-  res.status(200).json({
-    message: "Logout successfully",
-  });
 }
 
 async function getProfile(req, res) {
@@ -159,10 +150,22 @@ async function getProfile(req, res) {
   }
 }
 
+async function LogoutUser(req, res, next) {
+  res.clearCookie("authToken", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+  });
+
+  res.status(200).json({
+    message: "Logout successfully",
+  });
+}
+
 module.exports = {
   signupUser,
   loginUser,
   profile,
-  LogoutUser,
   getProfile,
+  LogoutUser,
 };
