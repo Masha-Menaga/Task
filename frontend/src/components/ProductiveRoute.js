@@ -17,7 +17,7 @@ const ProductiveRoute = ({ children }) => {
         setIsAuth(response.data.isValid);
         console.log("Token validation success!");
       } catch (err) {
-        console.error("Token validation failed", err);
+        console.log("Token validation failed", err);
         setIsAuth(false);
       } finally {
         setIsLoading(false);
