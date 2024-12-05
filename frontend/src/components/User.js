@@ -47,16 +47,22 @@ const User = () => {
                     alt="Profile"
                     className="profile-icon"
                   />
-                  <p>
-                    <b>{user.role} : </b> {user.username}
-                  </p>
-                  <button className="logout-button" onClick={logout}>
-                    Logout
-                  </button>
+                  {user ? (
+                    <>
+                      <p>
+                        <b>{user.role} : </b> {user.username}
+                      </p>
+                      <button className="logout-button" onClick={logout}>
+                        Logout
+                      </button>
+                    </>
+                  ) : (
+                    <p>Loading user details...</p>
+                  )}
                 </div>
               )}
 
-              <h1>Hello {user.username} , </h1>
+              <h1>Hello {user?.username || "Guest"}!, </h1>
               {active === "Dashboard" && (
                 <>
                   <p> Have a nice day</p>

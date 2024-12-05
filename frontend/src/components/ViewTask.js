@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "./ViewTask.css";
 import API from "../api";
 
@@ -6,7 +6,7 @@ const ViewTask = () => {
   const [loggedInUser, setLoggedInUser] = useState(
     JSON.parse(localStorage.getItem("loggedInUser")) || {}
   );
-  console.log("enter task");
+
   const [tasks, setTasks] = useState([]);
   const [showModal, setShowModal] = useState(false);
 
@@ -16,7 +16,15 @@ const ViewTask = () => {
     description: "",
     status: "Pending",
   });
-  console.log(newTask);
+
+  const fetchTasks = useCallback(async () => {
+    try {
+      const response = await API.get(`/api/tasks?userId=${loggedInUser._id}`);
+      setTasks(response.data.tasks);
+    } catch (err) {
+      console.error("Failed to fetch tasks:", err.message);
+    }
+  }, [loggedInUser._id]);
 
   useEffect(() => {
     const handleStorageChange = () => {
@@ -36,21 +44,10 @@ const ViewTask = () => {
   }, []);
 
   useEffect(() => {
-    const fetchTasks = async () => {
-      console.log("UseEffect WOrks");
-      try {
-        const response = await API.get(`/api/tasks?userId=${loggedInUser._id}`);
-        setTasks(response.data.tasks);
-        console.log(response.data);
-      } catch (err) {
-        console.error("Failed to fetch tasks:", err.message);
-      }
-    };
-
     if (loggedInUser?._id) {
       fetchTasks();
     }
-  }, [loggedInUser?._id]);
+  }, [loggedInUser?._id, fetchTasks]);
 
   // const handleInputChange = (e) => {
   //   const { name, value } = e.target;
@@ -63,19 +60,11 @@ const ViewTask = () => {
       return;
     }
     try {
-      console.log("try to save task");
-      const response = await API.post("/api/addTask", newTask);
-      setTasks((prevTasks) => [...prevTasks, response.data.newTask]);
-      setShowModal(false);
-      setNewTask({
-        userId: loggedInUser._id,
-        title: "",
-        description: "",
-        status: "Pending",
-      });
-      console.log(loggedInUser);
+      await API.post("/api/addTask", newTask);
+      fetchTasks();
+      resetModal();
     } catch (err) {
-      console.error("Failed to add task:", err);
+      console.error("Failed to add task:", err.message);
     }
   };
 
@@ -97,23 +86,11 @@ const ViewTask = () => {
     }
 
     try {
-      console.log("try to update task");
-      const response = await API.put(`/api/tasks/${newTask._id}`, newTask);
-      setTasks((prevTasks) =>
-        prevTasks.map((task) =>
-          task._id === newTask._id ? response.data.updatedTask : task
-        )
-      );
-      setShowModal(false);
-      setNewTask({
-        userId: loggedInUser._id,
-        title: "",
-        description: "",
-        status: "Pending",
-      });
-      console.log(loggedInUser);
+      await API.put(`/api/tasks/${newTask._id}`, newTask);
+      fetchTasks();
+      resetModal();
     } catch (err) {
-      console.error("Failed to update task:", err);
+      console.error("Failed to update task:", err.message);
     }
   };
 
@@ -121,10 +98,20 @@ const ViewTask = () => {
     try {
       console.log("try to delete task", taskId);
       await API.delete(`/api/tasks/${taskId}`);
-      setTasks((prevTasks) => prevTasks.filter((task) => task._id !== taskId));
+      fetchTasks();
     } catch (err) {
-      console.error("Failed to delete task:", err);
+      console.error("Failed to delete task:", err.message);
     }
+  };
+
+  const resetModal = () => {
+    setShowModal(false);
+    setNewTask({
+      userId: loggedInUser._id,
+      title: "",
+      description: "",
+      status: "Pending",
+    });
   };
   return (
     <>

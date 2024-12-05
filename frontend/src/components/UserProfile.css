@@ -15,9 +15,8 @@
   font-weight: light;
   border: 1px solid;
   text-align: left;
-  width: 100%;
-  max-width: 500px;
-  /* border-collapse: collapse; Cleaner table layout */
+  width: 500px;
+  max-width: 800px;
 }
 
 .profile-table td {
@@ -30,11 +29,11 @@
 @media (max-width: 768px) {
   .profile-table {
     width: 100%;
-    font-size: 14px; /* Adjust font size for smaller screens */
+    font-size: 14px;
   }
 
   .profile-table td {
-    padding: 8px; /* Slightly increase padding for touch devices */
+    padding: 8px;
   }
 }
 
@@ -45,17 +44,17 @@
   }
 
   .profile-table td {
-    padding: 4px; /* Adjust padding for compact design */
+    padding: 4px;
   }
 }
 
 /* Mobile-friendly Table (Stacked Layout) */
-@media (max-width: 480px) {
+/* @media (max-width: 480px) {
   .profile-table {
     display: block;
     overflow: hidden;
     border: 1px solid;
-    /* border: none; Remove borders for better appearance */
+    
   }
 
   .profile-table tr {
@@ -71,11 +70,10 @@
   }
 
   .profile-table td::before {
-    /* content: attr(
-      data-label
-    ); Use `data-label` for headings in stacked view */
+
     font-weight: bold;
     display: block;
     margin-bottom: 3px;
   }
-}
+} 
+*/

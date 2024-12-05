@@ -4,7 +4,7 @@ import LoginContext from "../context/LoginContext";
 import "./Login.css";
 
 const Signup = () => {
-  const { user, setUser, match, signup, close } = useContext(LoginContext);
+  const { user, setUser, match, signup } = useContext(LoginContext);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,10 +16,6 @@ const Signup = () => {
 
   return (
     <div className="container">
-      <p className="close" onClick={close}>
-        &#10006;
-      </p>
-
       <p>User Name :</p>
       <input
         type="text"

@@ -27,6 +27,19 @@ async function signupUser(req, res) {
       emailid,
     });
 
+    const token = jwt.sign(
+      { userId: newUser._id, username: newUser.username, role: newUser.role },
+      process.env.JWT_SECRETKEY || "defaultsecret",
+      { expiresIn: process.env.JWT_EXPIRETIME || "1h" }
+    );
+
+    res.cookie("authToken", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      maxAge: 3600000,
+    });
+
     res.status(201).json({ message: "User Registered Successfully", newUser });
   } catch (err) {
     console.error("Signup error:", err);

@@ -185,6 +185,7 @@ export const LoginProvider = ({ children }) => {
         login,
         close,
         isAuth,
+        setIsAuth,
         logout,
         submit,
       }}

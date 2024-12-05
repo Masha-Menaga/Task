@@ -9,7 +9,7 @@ const ViewUser = () => {
   const loggedInUser = useMemo(() => {
     return JSON.parse(localStorage.getItem("loggedInUser")) || {};
   }, []);
-  const [selectedUserId, setSelectedUserId] = useState(null);
+  const [selectedUsers, setSelectedUsers] = useState(null);
 
   const fetchUsers = async () => {
     setError("");
@@ -31,26 +31,28 @@ const ViewUser = () => {
   const fetchTasks = async (userId) => {
     try {
       const response = await API.get(`/api/tasks?userId=${userId}`);
+
       setTasks(response.data.tasks);
     } catch (err) {
       console.error("Failed to fetch tasks:", err);
     }
   };
 
-  const handleViewTasks = (userId) => {
-    setSelectedUserId(userId);
-    fetchTasks(userId);
+  const handleViewTasks = (user) => {
+    setSelectedUsers(user);
+    fetchTasks(user._id);
   };
-  const handleDeleteUser = async (userId) => {
+  const handleDeleteUser = async (user) => {
     try {
-      await API.delete(`/api/deleteUser/${userId}`);
-      setUsers((prevUsers) => prevUsers.filter((user) => user._id !== userId));
+      await API.delete(`/api/deleteUser/${user._id}`);
+      console.log(user._id);
+      fetchUsers();
     } catch (err) {
       console.error("Failed to delete user:", err);
     }
   };
   return (
-    <div>
+    <>
       <div className="userview-container">
         <h3>All Users</h3>
         {error && <p>{error}</p>}
@@ -75,13 +77,13 @@ const ViewUser = () => {
                     <td>
                       <div className="button-container">
                         <button
-                          onClick={() => handleViewTasks(user._id)}
+                          onClick={() => handleViewTasks(user)}
                           className="viewTask"
                         >
                           View Tasks
                         </button>
                         <button
-                          onClick={() => handleDeleteUser(user._id)}
+                          onClick={() => handleDeleteUser(user)}
                           className="viewTask"
                         >
                           Delete
@@ -98,9 +100,9 @@ const ViewUser = () => {
           </tbody>
         </table>
       </div>
-      {selectedUserId && (
+      {selectedUsers && (
         <div className="userview-container">
-          <h3>Tasks for User - User id: {selectedUserId}</h3>
+          <h3>Tasks for User - User name: {selectedUsers.username}</h3>
           <table className="viewuser-table">
             <thead>
               <tr>
@@ -127,7 +129,7 @@ const ViewUser = () => {
           </table>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

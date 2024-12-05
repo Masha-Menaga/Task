@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import LoginContext from "../context/LoginContext";
 
 const Login = () => {
-  const { user, setUser, match, login, close } = useContext(LoginContext);
+  const { user, setUser, match, login } = useContext(LoginContext);
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -17,9 +17,6 @@ const Login = () => {
 
   return (
     <div className="container">
-      <p className="close" onClick={close}>
-        &#10006;
-      </p>
       <p>User Name :</p>
       <input
         type="text"
