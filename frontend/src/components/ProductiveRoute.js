@@ -8,20 +8,21 @@ const ProductiveRoute = ({ children }) => {
 
   useEffect(() => {
     const checkToken = async () => {
-      const token = localStorage.getItem("authToken");
-      if (token) {
-        try {
-          const response = await API.post("/validateToken", { token });
-          if (response.data.valid) {
-            setIsAuth(true);
-          } else {
-            setIsAuth(false);
-          }
-        } catch (err) {
-          console.error("Token validation failed", err);
+      try {
+        const response = await API.post("/api/validateToken", {
+          withCredentials: true,
+        });
+        if (response.data.valid) {
+          setIsAuth(true);
+        } else {
+          setIsAuth(false);
         }
+      } catch (err) {
+        console.error("Token validation failed", err);
+        setIsAuth(false);
       }
     };
+
     checkToken();
   }, [setIsAuth]);
 

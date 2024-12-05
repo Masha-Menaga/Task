@@ -24,6 +24,8 @@ const UserRouter = Router();
 
 UserRouter.post("/signup", signupUser);
 UserRouter.post("/login", loginUser);
+UserRouter.get("/validateToken", verifyToken, validateToken);
+
 UserRouter.post("/profile", verifyToken, profile);
 UserRouter.get("/getProfile", verifyToken, getProfile);
 UserRouter.post("/logout", LogoutUser);

@@ -103,8 +103,7 @@ async function loginUser(req, res) {
     res.cookie("authToken", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-      maxAge: 3600000,
+      sameSite: "strict",
     });
 
     res.status(200).json({
@@ -154,12 +153,21 @@ async function LogoutUser(req, res, next) {
   res.clearCookie("authToken", {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    sameSite: "strict",
   });
 
   res.status(200).json({
     message: "Logout successfully",
   });
+}
+
+async function validateToken(req, res) {
+  try {
+    const username = req.user.username;
+    res.status(200).json({ isValid: true, username });
+  } catch (err) {
+    res.status(401).json({ isValid: false, message: "Invalid token" });
+  }
 }
 
 module.exports = {
@@ -168,4 +176,5 @@ module.exports = {
   profile,
   getProfile,
   LogoutUser,
+  validateToken,
 };
