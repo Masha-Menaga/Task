@@ -164,8 +164,7 @@ async function LogoutUser(req, res, next) {
 
 async function validateToken(req, res) {
   try {
-    const username = req.user.username;
-    res.status(200).json({ isValid: true, username });
+    res.status(200).json({ isValid: true, username: req.user.username });
   } catch (err) {
     res.status(401).json({ isValid: false, message: "Invalid token" });
   }
