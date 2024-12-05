@@ -5,6 +5,7 @@ const {
   profile,
   LogoutUser,
   getProfile,
+  validateToken,
 } = require("../Controller/UserController");
 const {
   addTask,
